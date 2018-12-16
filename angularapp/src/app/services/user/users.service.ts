@@ -9,14 +9,15 @@ export class UsersService {
 
   constructor(public http: HttpClient) {  }
   getUserData(): Observable<any>{
-    return this.http.get('https://randomuser.me/api/?results=10');
+    return this.http.get('http://localhost:4000/api/users');
  }
 
  getOnlineData() : any{
    
     this.getUserData().subscribe(
       resp => {
-         window.localStorage.setItem("data", JSON.stringify(resp.results));
+        console.log(resp);
+         window.localStorage.setItem("data", JSON.stringify(resp));
          
          return JSON.stringify(resp.results);
       },

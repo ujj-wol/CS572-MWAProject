@@ -9,7 +9,7 @@ import { UsersService } from '../../services/user/users.service';
     </p>
     <p>  users   </p>
     <ul>
-    <li *ngFor="let user of data"><a [routerLink]="['users', user.login.uuid]">{{user.name.first}} {{user.name.last}}</a></li>
+    <li *ngFor="let user of data">{{user | json}}</li>
     </ul>
   `,
   styles: []

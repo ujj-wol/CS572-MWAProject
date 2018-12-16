@@ -1,5 +1,13 @@
 var express = require('express');
 var router = express.Router();
+let cors = require('cors');
+
+// let corsOption = {
+//   "origin": "*",
+//   "methods": "GET, HEAD, PUT, PATCH, POST, DELETE",
+//   "preflightContinue": false,
+//   "optionsSuccessStatus": 200
+// }
 
 // for validation
 const {
@@ -117,5 +125,24 @@ router.delete("/delete/:id", (req, res) => {
     });
 
 });
+
+
+//for login
+router.post('/login', (req, res, next) => {
+  
+  let username = req.body.username;
+  let password = req.body.password;
+
+  req.app.locals.db.collection('users').find({"username": username, "password": password}).toArray((err, data) => {
+    if (err) return res.status(500).json({
+      error: err
+    });
+    else {
+      console.log(data);
+      res.status(200).json({"success": "1"});
+    }
+  });
+});
+
 
 module.exports = router;
