@@ -129,7 +129,7 @@ router.delete("/delete/:id", (req, res) => {
 
 //for login
 router.post('/login', (req, res, next) => {
-  
+
   let username = req.body.username;
   let password = req.body.password;
 
@@ -139,7 +139,12 @@ router.post('/login', (req, res, next) => {
     });
     else {
       console.log(data);
-      res.status(200).json({"success": "1"});
+      if(data.length === 0) {
+        res.status(200).json("0");
+      }else {
+        res.status(200).json("1");
+      }
+      
     }
   });
 });
