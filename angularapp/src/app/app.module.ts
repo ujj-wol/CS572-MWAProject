@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
+import { HomeComponent } from './components/home/home.component';
 
 import { UsersService } from './services/user/users.service';
 import { ErrorComponent } from './error.component';
@@ -17,15 +18,17 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     ErrorComponent,
     PostsComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
-     { path: '', component: HomeComponent },
+     { path: '', loadChildren: './modules/login.module#LoginModule' },
      { path: 'users', loadChildren: './modules/users.module#UsersModule'},
-     { path: 'error', component: ErrorComponent }
+     { path: 'login', loadChildren: './modules/login.module#LoginModule'},
+     { path: 'error', component: ErrorComponent },
+     { path: 'home', component: HomeComponent }
 
     ])
   ],
