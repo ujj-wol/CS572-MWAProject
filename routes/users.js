@@ -42,7 +42,7 @@ router.get("/:username", (req, res) => {
         error: err
       });
       res.status(200).json(results);
-      console.log(id);
+      console.log(username);
     });
 });
 
@@ -109,7 +109,7 @@ router.patch("/update/:username", (req, res) => {
 router.delete("/delete/:username", (req, res) => {
   let username = req.params.username;
 
-  console.log(`deleting the user with id of ${id}`);
+  console.log(`deleting the user with username ${username}`);
   let myquery = {
     "username": username
   };
