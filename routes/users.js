@@ -66,7 +66,7 @@ router.post("/add", [
     password: req.body.password,
     type: "Registered"
   };
-
+console.log(newDoc);
   req.app.locals.db.collection('users').insertOne(newDoc, (err, data) => {
     if (err) return res.status(500).json({
       error: err

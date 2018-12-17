@@ -3,7 +3,7 @@ import { PostsService } from 'src/app/services/post/posts.service';
 import { Router } from '@angular/router';
 import { store } from 'src/app/store/store';
 import { addPostAction } from 'src/app/store/actions';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-addpost',
@@ -20,8 +20,18 @@ export class AddpostComponent implements OnInit {
   posts;
   unsubscribe;
   
-  constructor(private postService: PostsService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostsService, private router: Router) {
+    this.myForm = formBuilder.group({
+      'title': ['',Validators.required],
+      'body': ['', Validators.required]
+  });
 
+  this.myForm.valueChanges.subscribe(
+    (data: any) => console.log(data)
+  );
+   }
+
+  
   add() {
     console.log(`${this.username} and title ${this.title}`)
   if(this.username && this.title && this.body) {
@@ -43,6 +53,7 @@ export class AddpostComponent implements OnInit {
 
   ngOnInit() {
     this.posts = store.getState().data;
+    console.log(this.posts);
     this.unsubscribe = store.subscribe(()=> {this.posts = store.getState().data});
   }
 
@@ -51,6 +62,7 @@ export class AddpostComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(this.myForm.value);
+    console.log(this.myForm.value)
+    store.dispatch(addPostAction(this.myForm.value));
   }
 }

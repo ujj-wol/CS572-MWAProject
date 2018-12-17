@@ -2,7 +2,7 @@ import { IAppState } from './iapp-state';
 import { ADD_POST } from './actions';
 
 const initialState: IAppState = { data: [
-    { title:'test', body: 'body here' }
+    { title:'test', body: 'body here testing' }
 ]
 }
 
