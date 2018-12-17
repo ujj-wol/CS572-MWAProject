@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
 validateLogin() {
   if(this.username && this.password) {
       this.loginService.validateLogin(this.username, this.password).subscribe((result) => {
+        if(result) {
         localStorage.setItem('token', result.token);
+      }
         this.router.navigate(['/home']);
     }, error => {
       console.log('error is ', error);
