@@ -9,16 +9,15 @@ import { UsersService } from '../services/user/users.service';
 })
 export class MyguardGuard implements CanActivate {
 
-  constructor(private dataService: UsersService, private router: Router) {
+  constructor(private usersService: UsersService, private router: Router) {
 
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if(this.dataService.isUserExists(next.params.id)) {
-        return true;
-      }  
-      this.router.navigate(['/error']); 
-    return true;
+    if (localStorage.getItem('token') !== null) {
+      return true;
+    }
+    this.router.navigate(['/login']);
   }
 }

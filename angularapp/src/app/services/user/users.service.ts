@@ -28,7 +28,7 @@ export class UsersService {
    
     this.getUserData().subscribe(
       resp => {
-        console.log(resp);
+        //console.log(resp);
          window.localStorage.setItem("data", JSON.stringify(resp));
          
          return JSON.stringify(resp.results);
@@ -48,20 +48,9 @@ export class UsersService {
    else null; 
  }
 
- getUserById(uuid: string){
-   const userDataRaw: string = window.localStorage.getItem('data');
-   if (userDataRaw == null) {
-     return null;
-   } else {
-     const userData = JSON.parse(userDataRaw);
-     for (const user of userData) {
-       if (user.login.uuid == uuid) {
-         return user;
-       }
-     }
-   }
-   return null;
- 
+ getUserById(uuid: string): any {
+   console.log("Id: "+ uuid);
+  return this.http.get(`http://localhost:4000/api/users/${uuid}`);
  }
 
  

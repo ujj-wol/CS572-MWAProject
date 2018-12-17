@@ -3,15 +3,7 @@ import { UsersService } from '../../services/user/users.service';
 
 @Component({
   selector: 'app-users',
-  template: `
-    <p>
-      users works!
-    </p>
-    <p>  users   </p>
-    <ul>
-    <li *ngFor="let user of data">{{user | json}}</li>
-    </ul>
-  `,
+  templateUrl: './users.component.html',
   styles: []
 })
 export class UsersComponent implements OnInit {
