@@ -16,7 +16,7 @@ export class UsersService {
    
     this.getUserData().subscribe(
       resp => {
-        console.log(resp);
+        //console.log(resp);
          window.localStorage.setItem("data", JSON.stringify(resp));
          
          return JSON.stringify(resp.results);
