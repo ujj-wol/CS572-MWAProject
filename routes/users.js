@@ -29,20 +29,20 @@ router.get('/', (req, res, next) => {
 });
 
 // to find details of a user
-router.get("/:id", (req, res) => {
+router.get("/:username", (req, res) => {
 
   console.log('find details of a particular user!!');
-  let id = req.params.id;
+  let username = req.params.username;
 
   req.app.locals.db.collection('users')
     .find({
-      "_id": id
+      "username": username
     }).toArray((err, results) => {
       if (err) return res.status(404).json({
         error: err
       });
       res.status(200).json(results);
-      console.log(id);
+      console.log(username);
     });
 });
 
@@ -50,8 +50,7 @@ router.get("/:id", (req, res) => {
 router.post("/add", [
   check("username", "username field cannot be empty").exists(),
   check("email", "email cannot be empty").exists(),
-  check("password", "password cannot be empty").exists(),
-  check("type", "user type is missing").exists()
+  check("password", "password cannot be empty").exists()
 ], (req, res) => {
   const errors = validationResult(req);
 
@@ -65,7 +64,7 @@ router.post("/add", [
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    type: req.body.type
+    type: "Registered"
   };
 
   req.app.locals.db.collection('users').insertOne(newDoc, (err, data) => {
@@ -79,14 +78,14 @@ router.post("/add", [
 
 });
 
-// to update the user type using their id
-router.patch("/update/:id", (req, res) => {
-  let id = req.params.id;
+// to update the user type using their username
+router.patch("/update/:username", (req, res) => {
+  let username = req.params.username;
   let newtype = req.body.type;
 
-  console.log(`updating the user with id of ${id}`);
+  console.log(`updating the user with email of ${email}`);
   let myquery = {
-    "_id": id
+    "username": username
   };
 
   let newValues = {$set: {type: newtype}};
@@ -105,13 +104,13 @@ router.patch("/update/:id", (req, res) => {
 });
 
 
-// to delete a user using their id
-router.delete("/delete/:id", (req, res) => {
-  let id = req.params.id;
+// to delete a user using their username
+router.delete("/delete/:username", (req, res) => {
+  let username = req.params.username;
 
-  console.log(`deleting the user with id of ${id}`);
+  console.log(`deleting the user with username ${username}`);
   let myquery = {
-    "_id": id
+    "username": username
   };
 
   req.app.locals.db.collection('users')
@@ -149,7 +148,8 @@ router.post('/login', (req, res, next) => {
         res.status(422).json({token:""});
       }else {
         res.status(200).json({
-          token: token
+          token: token,
+          username: user.username
         });
       }
       

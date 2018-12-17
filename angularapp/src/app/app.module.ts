@@ -12,8 +12,6 @@ import { ErrorComponent } from './error.component';
 import { HeaderComponent } from './public/header.component';
 import { FooterComponent } from './public/footer.component';
 import { PostsComponent } from './components/post/posts.component';
-import { LoginComponent } from './components/login/login.component';
-import { MypostsComponent } from './components/user/myposts/myposts.component';
 import { AttachTokenInterceptor} from './attach-token';
 import { SignupComponent } from './components/login/signup.component';
 
@@ -25,8 +23,6 @@ import { SignupComponent } from './components/login/signup.component';
     HeaderComponent,
     FooterComponent,
     PostsComponent,
-    
-    MypostsComponent,
     SignupComponent
   ],
   imports: [
