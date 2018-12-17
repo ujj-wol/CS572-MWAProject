@@ -48,7 +48,7 @@ MongoClient.connect(url, function (err, database) {
   // create an index on username for posts collection
   database.db('mwa_project_db').collection('posts').createIndex({username: 1});
 
-  const port = process.env.PORT || 1947;
+  const port = process.env.PORT || 4000;
   app.listen(port,()=> console.log(`Listening at port ${port}`));
 });
 
