@@ -6,6 +6,7 @@ var lessMiddleware = require('less-middleware');
 var logger = require('morgan');
 let cors = require('cors');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let postsRouter = require('./routes/posts');
@@ -47,7 +48,7 @@ MongoClient.connect(url, function (err, database) {
   // create an index on username for posts collection
   database.db('mwa_project_db').collection('posts').createIndex({username: 1});
 
-  const port = 4000;
+  const port = process.env.PORT || 4000;
   app.listen(port,()=> console.log(`Listening at port ${port}`));
 });
 
