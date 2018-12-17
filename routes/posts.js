@@ -18,15 +18,15 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// to find posts for a user id
-router.get("/:id", (req, res) => {
+// to find posts using username
+router.get("/:username", (req, res) => {
 
     console.log('find post for a user route entered!!');
-    let id = req.params.id;
+    let username = req.params.username;
 
     req.app.locals.db.collection('posts')
         .find({
-            "_id": id
+            "username": username
         }).toArray((err, results) => {
             if (err) return res.status(404).json({
                 error: err
