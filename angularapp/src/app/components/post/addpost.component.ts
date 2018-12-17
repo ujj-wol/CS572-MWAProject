@@ -3,6 +3,7 @@ import { PostsService } from 'src/app/services/post/posts.service';
 import { Router } from '@angular/router';
 import { store } from 'src/app/store/store';
 import { addPostAction } from 'src/app/store/actions';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-addpost',
@@ -11,6 +12,8 @@ import { addPostAction } from 'src/app/store/actions';
 })
 export class AddpostComponent implements OnInit {
 
+  myForm: FormGroup;
+  
   username = "amjad";
   @Input() title;
   @Input() body;
