@@ -136,7 +136,7 @@ router.post('/login', (req, res, next) => {
 
   req.app.locals.db.collection('users').find({"username": username, "password": password}).toArray((err, data) => {
     if (err) return res.status(500).json({
-      error: err
+      token:""
     });
     else {
       console.log(data);
@@ -146,7 +146,7 @@ router.post('/login', (req, res, next) => {
 
 
       if(data.length === 0) {
-        res.status(422).json('0');
+        res.status(422).json({token:""});
       }else {
         res.status(200).json({
           token: token
