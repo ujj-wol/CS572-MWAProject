@@ -32,7 +32,7 @@ router.get("/:username", (req, res) => {
                 error: err
             });
             res.status(200).json(results);
-            console.log(id);
+            console.log(username);
         });
 
 });
