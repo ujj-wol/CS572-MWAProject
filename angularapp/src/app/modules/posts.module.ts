@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AddpostComponent } from '../components/post/addpost.component';
+import { RouterModule } from '@angular/router';
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
+  declarations: [AddpostComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild([
+      { path: 'add', component: AddpostComponent }
+    ])
   ]
 })
 export class PostsModule { }

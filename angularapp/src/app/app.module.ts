@@ -9,15 +9,16 @@ import { HomeComponent } from './components/home/home.component';
 
 import { UsersService } from './services/user/users.service';
 import { ErrorComponent } from './error.component';
-import { PostsComponent } from './components/post/posts.component';
-import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './public/header.component';
+import { FooterComponent } from './public/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ErrorComponent,
-    PostsComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import { LoginComponent } from './components/login/login.component';
      { path: 'users', loadChildren: './modules/users.module#UsersModule'},
      { path: 'login', loadChildren: './modules/login.module#LoginModule'},
      { path: 'error', component: ErrorComponent },
-     { path: 'home', component: HomeComponent }
+     { path: 'home', component: HomeComponent },
+     { path: 'post', loadChildren: './modules/posts.module#PostsModule' }
 
     ])
   ],
