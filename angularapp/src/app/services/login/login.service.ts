@@ -18,4 +18,11 @@ export class LoginService {
         });
       }
  
+      add(username, password, email){
+        return this.http.post('http://localhost:4000/api/users/add',{
+            username : username,
+            password : password,
+            email: email
+        });
+      }
 }
