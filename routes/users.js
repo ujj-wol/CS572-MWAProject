@@ -50,8 +50,7 @@ router.get("/:username", (req, res) => {
 router.post("/add", [
   check("username", "username field cannot be empty").exists(),
   check("email", "email cannot be empty").exists(),
-  check("password", "password cannot be empty").exists(),
-  check("type", "user type is missing").exists()
+  check("password", "password cannot be empty").exists()
 ], (req, res) => {
   const errors = validationResult(req);
 
@@ -65,7 +64,7 @@ router.post("/add", [
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    type: req.body.type
+    type: "Registered"
   };
 
   req.app.locals.db.collection('users').insertOne(newDoc, (err, data) => {

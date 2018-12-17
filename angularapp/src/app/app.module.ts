@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,6 +13,7 @@ import { HeaderComponent } from './public/header.component';
 import { FooterComponent } from './public/footer.component';
 import { PostsComponent } from './components/post/posts.component';
 import { AttachTokenInterceptor} from './attach-token';
+import { SignupComponent } from './components/login/signup.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,13 @@ import { AttachTokenInterceptor} from './attach-token';
     ErrorComponent,
     HeaderComponent,
     FooterComponent,
-    PostsComponent
+    PostsComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([
      { path: '', loadChildren: './modules/login.module#LoginModule' },
@@ -33,6 +36,7 @@ import { AttachTokenInterceptor} from './attach-token';
      { path: 'login', loadChildren: './modules/login.module#LoginModule'},
      { path: 'error', component: ErrorComponent },
      { path: 'home', component: HomeComponent },
+     { path: 'signup', component: SignupComponent },
      { path: 'post', loadChildren: './modules/posts.module#PostsModule' }
 
     ])
