@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { UsersService } from './services/user/users.service';
 import { ErrorComponent } from './error.component';
 import { PostsComponent } from './components/post/posts.component';
 import { LoginComponent } from './components/login/login.component';
+import { MypostsComponent } from './components/user/myposts/myposts.component';
+import { AttachTokenInterceptor} from './attach-token';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     ErrorComponent,
     PostsComponent,
+    MypostsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,10 @@ import { LoginComponent } from './components/login/login.component';
 
     ])
   ],
-  providers: [UsersService],
+  providers: [
+    UsersService,
+    { provide: HTTP_INTERCEPTORS, useClass: AttachTokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

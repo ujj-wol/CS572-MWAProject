@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let cors = require('cors');
+var jwt = require('jsonwebtoken');
 
 // let corsOption = {
 //   "origin": "*",
@@ -139,10 +140,17 @@ router.post('/login', (req, res, next) => {
     });
     else {
       console.log(data);
+      const user = data[0];
+
+      var token = jwt.sign({ userId: user._id , email: user.email}, 'fksjflsjfklsjflkajfklsjfklsjflkajfklsjf8759358395738957839');
+
+
       if(data.length === 0) {
-        res.status(200).json("0");
+        res.status(422).json('0');
       }else {
-        res.status(200).json("1");
+        res.status(200).json({
+          token: token
+        });
       }
       
     }
