@@ -12,8 +12,6 @@ import { ErrorComponent } from './error.component';
 import { HeaderComponent } from './public/header.component';
 import { FooterComponent } from './public/footer.component';
 import { PostsComponent } from './components/post/posts.component';
-import { LoginComponent } from './components/login/login.component';
-import { MypostsComponent } from './components/user/myposts/myposts.component';
 import { AttachTokenInterceptor} from './attach-token';
 
 @NgModule({
@@ -23,8 +21,7 @@ import { AttachTokenInterceptor} from './attach-token';
     ErrorComponent,
     HeaderComponent,
     FooterComponent,
-    PostsComponent,
-    MypostsComponent
+    PostsComponent
   ],
   imports: [
     BrowserModule,

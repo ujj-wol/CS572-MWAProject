@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ViewpostComponent } from '../components/post/viewpost.component';
 
 @NgModule({
-  declarations: [AddpostComponent],
+  declarations: [AddpostComponent, ViewpostComponent],
   imports: [
     CommonModule,
     FormsModule,
