@@ -4,6 +4,7 @@ import { AddpostComponent } from '../components/post/addpost.component';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
+import { ViewpostComponent } from '../components/post/viewpost.component';
 
 @NgModule({
   declarations: [AddpostComponent],
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      { path: 'add', component: AddpostComponent }
+      { path: 'add', component: AddpostComponent },
+      { path: 'view', component: ViewpostComponent  }
     ])
   ]
 })
