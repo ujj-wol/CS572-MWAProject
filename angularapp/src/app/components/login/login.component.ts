@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
 validateLogin() {
   if(this.username && this.password) {
       this.loginService.validateLogin(this.username, this.password).subscribe((result) => {
-        console.log("Result object"+ result)
-        console.log("This is the result.token:"+ result.token);
         localStorage.setItem('token', result.token);
         this.router.navigate(['/home']);
     }, error => {
