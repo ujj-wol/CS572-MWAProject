@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MypostsComponent implements OnInit {
 
+  private posts=["first post", "second post", "third post"];
+
   private userPosts;
   constructor() { }
 
