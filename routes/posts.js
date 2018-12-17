@@ -53,6 +53,7 @@ router.post("/add", [
 
     let newDoc = {
         username: req.body.username,
+        email: req.body.email,
         title: req.body.title,
         body: req.body.body,
         created_date: "",
@@ -110,6 +111,32 @@ router.patch("/update/:id", [
         });
 
 });
+
+// to add comment to a post using id
+router.patch('/:postid/addcomment', (req, res) => {
+    let id = req.params.postid;
+
+    let myquery = {
+        "_id": id
+    };
+
+    let newComment = {
+        email: req.body.email,
+        text: req.body.text
+    }
+
+    req.app.locals.db.collection('posts')
+        .updateOne(myquery, {$push: {comments: newComment}}, (err, success) => {
+            if (err) return res.status(404).json({
+                error: err
+            });
+
+            return res.status(200).json({
+                status: `successfully added new comment to the post with id ${id}: ${JSON.stringify(newComment)}`
+            })
+        })
+
+})
 
 
 // to delete a post using their id

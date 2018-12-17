@@ -29,14 +29,14 @@ router.get('/', (req, res, next) => {
 });
 
 // to find details of a user
-router.get("/:id", (req, res) => {
+router.get("/:email", (req, res) => {
 
   console.log('find details of a particular user!!');
-  let id = req.params.id;
+  let email = req.params.email;
 
   req.app.locals.db.collection('users')
     .find({
-      "_id": id
+      "email": email
     }).toArray((err, results) => {
       if (err) return res.status(404).json({
         error: err
@@ -79,14 +79,14 @@ router.post("/add", [
 
 });
 
-// to update the user type using their id
-router.patch("/update/:id", (req, res) => {
+// to update the user type using their email
+router.patch("/update/:email", (req, res) => {
   let id = req.params.id;
   let newtype = req.body.type;
 
-  console.log(`updating the user with id of ${id}`);
+  console.log(`updating the user with email of ${email}`);
   let myquery = {
-    "_id": id
+    "email": email
   };
 
   let newValues = {$set: {type: newtype}};
@@ -105,13 +105,13 @@ router.patch("/update/:id", (req, res) => {
 });
 
 
-// to delete a user using their id
-router.delete("/delete/:id", (req, res) => {
-  let id = req.params.id;
+// to delete a user using their email
+router.delete("/delete/:email", (req, res) => {
+  let email = req.params.email;
 
   console.log(`deleting the user with id of ${id}`);
   let myquery = {
-    "_id": id
+    "email": email
   };
 
   req.app.locals.db.collection('users')
