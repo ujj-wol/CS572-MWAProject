@@ -7,13 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { ViewpostComponent } from '../components/post/viewpost.component';
 
 @NgModule({
-  declarations: [AddpostComponent],
+  declarations: [AddpostComponent, ViewpostComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild([
       { path: 'add', component: AddpostComponent },
-      { path: 'view', component: ViewpostComponent  }
+      { path: 'view', component: ViewpostComponent }
     ])
   ]
 })

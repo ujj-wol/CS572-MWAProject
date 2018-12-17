@@ -18,11 +18,10 @@ export class AddpostComponent implements OnInit {
   add() {
     console.log(`${this.username} and title ${this.title}`)
   if(this.username && this.title && this.body) {
-    console.log(`username: ${this.username} title: ${this.title} body: ${this.body}`)
     this.postService.add(this.username, this.title, this.body).subscribe(result => {
       console.log('result is ', result);
       if(result) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/post/view']);
       } else {
         console.log("heeree");
       }
