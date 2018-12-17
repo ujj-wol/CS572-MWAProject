@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/services/post/posts.service';
 
-
-
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
