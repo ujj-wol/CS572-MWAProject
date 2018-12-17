@@ -13,7 +13,7 @@ import { ViewpostComponent } from '../components/post/viewpost.component';
     FormsModule,
     RouterModule.forChild([
       { path: 'add', component: AddpostComponent },
-      { path: 'view', component: ViewpostComponent  }
+      { path: 'view', component: ViewpostComponent }
     ])
   ]
 })

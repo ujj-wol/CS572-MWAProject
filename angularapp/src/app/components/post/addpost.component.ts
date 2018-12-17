@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PostsService } from 'src/app/services/post/posts.service';
 import { Router } from '@angular/router';
+import { store } from 'src/app/store/store';
+import { addPostAction } from 'src/app/store/actions';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-addpost',
@@ -9,20 +12,23 @@ import { Router } from '@angular/router';
 })
 export class AddpostComponent implements OnInit {
 
+  myForm: FormGroup;
+  
   username = "amjad";
   @Input() title;
   @Input() body;
+  posts;
+  unsubscribe;
   
   constructor(private postService: PostsService, private router: Router) { }
 
   add() {
     console.log(`${this.username} and title ${this.title}`)
   if(this.username && this.title && this.body) {
-    console.log(`username: ${this.username} title: ${this.title} body: ${this.body}`)
     this.postService.add(this.username, this.title, this.body).subscribe(result => {
       console.log('result is ', result);
       if(result) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/post/view']);
       } else {
         console.log("heeree");
       }
@@ -36,6 +42,15 @@ export class AddpostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.posts = store.getState().data;
+    this.unsubscribe = store.subscribe(()=> {this.posts = store.getState().data});
   }
 
+  addPost(value) {
+    store.dispatch(addPostAction(value));
+  }
+
+  onSubmit() {
+    //console.log(this.myForm.value);
+  }
 }
