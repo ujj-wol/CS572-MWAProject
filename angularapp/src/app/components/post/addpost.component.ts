@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PostsService } from 'src/app/services/post/posts.service';
 import { Router } from '@angular/router';
+import { store } from 'src/app/store/store';
+import { addPostAction } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-addpost',
@@ -12,6 +14,8 @@ export class AddpostComponent implements OnInit {
   username = "amjad";
   @Input() title;
   @Input() body;
+  posts;
+  unsubscribe;
   
   constructor(private postService: PostsService, private router: Router) { }
 
@@ -35,6 +39,15 @@ export class AddpostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.posts = store.getState().data;
+    this.unsubscribe = store.subscribe(()=> {this.posts = store.getState().data});
   }
 
+  addPost(value) {
+    store.dispatch(addPostAction(value));
+  }
+
+  onSubmit() {
+    //console.log(this.myForm.value);
+  }
 }
