@@ -18,8 +18,11 @@ export class LoginComponent implements OnInit {
 
 validateLogin() {
   if(this.username && this.password) {
-      this.loginService.validateLogin(this.username, this.password).subscribe((result:{token:string}) => {
-        if(result.token) localStorage.setItem('token', result.token);
+      this.loginService.validateLogin(this.username, this.password).subscribe((result:{token:string, username:string}) => {
+        if(result.token) {
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('loggedInUser', result.username);
+        }
       
         this.router.navigate(['/home']);
     }, error => {
