@@ -135,26 +135,27 @@ router.patch("/update/:id", [
 });
 
 // to add comment to a post using id
-router.patch('/:postid/addcomment', (req, res) => {
-    let id = req.params.postid;
+router.patch('/:postId/addcomment', (req, res) => {
+    let postId = req.params.postId;
+    console.log(postId);
 
     let myquery = {
-        "_id": id
+        "_id": ObjectId(postId)
     };
 
     let newComment = {
-        email: req.body.email,
-        text: req.body.text
+        username: req.body.username,
+        comment_text: req.body.comment_text
     }
 
     req.app.locals.db.collection('posts')
         .updateOne(myquery, {$push: {comments: newComment}}, (err, success) => {
             if (err) return res.status(404).json({
-                error: err
+                error: err + `id from server:`
             });
 
             return res.status(200).json({
-                status: `successfully added new comment to the post with id ${id}: ${JSON.stringify(newComment)}`
+                status: `successfully added new comment to the post with id ${postId}`
             })
         })
 

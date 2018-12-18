@@ -27,4 +27,11 @@ export class PostsService {
         body: body
     });
   }
+
+  addComment(username, text, postId) {
+    return this.http.patch(`http://localhost:4000/api/posts/${postId}/addComment`, {
+      username: username,
+      comment_text: text
+    })
+  }
 }
