@@ -6,8 +6,9 @@
         <h5 class="mb-1">{{post.title}}</h5>
         <small>{{ today - post.created_date }} days ago</small>
       </div>
+      <hr>
       <p class="mb-1">{{post.body}}</p>
-      <small>read more...</small>
+      <button type="button" class="btn btn-info">read more...</button>
       <small style="float:right">{{ post.comments.length }} Comment</small>
     </a>
     <br>

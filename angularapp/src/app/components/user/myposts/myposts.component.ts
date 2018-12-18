@@ -10,15 +10,20 @@ export class MypostsComponent implements OnInit {
 
   //private userPosts=["first post", "second post", "third post"];
   private userPosts: any;
+  private loggedInUserName:string;
 
-  constructor(private myPostService: PostsService) { }
+  constructor(private myPostService: PostsService) {
+    if(localStorage.getItem('loggedInUser') !== "") {
+      this.loggedInUserName = localStorage.getItem('loggedInUser');
+    }
+   }
 
   ngOnInit() {
     this.getPostsForUser();
   }
 
   getPostsForUser() {
-    this.myPostService.getPostsByUser("ujjwol").subscribe(
+    this.myPostService.getPostsByUser(this.loggedInUserName).subscribe(
       data => {
         this.userPosts = data;
         console.log(data);

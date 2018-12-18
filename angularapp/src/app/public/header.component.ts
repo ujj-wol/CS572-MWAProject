@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  
+  private loggedInUserName:string;
   constructor(private myRouter: Router) { 
-    
+    if(localStorage.getItem('loggedInUser') !== "") {
+      this.loggedInUserName = localStorage.getItem('loggedInUser');
+    }
   }
 
   isLogined() {
@@ -23,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('loggedInUser');
     // console.log("Token after logout: " + localStorage.getItem('token'));
     this.myRouter.navigate(['/login']); 
   }
