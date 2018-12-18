@@ -5,9 +5,10 @@ import { RouterModule } from '@angular/router';
 
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { ViewpostComponent } from '../components/post/viewpost.component';
+import { CommentsComponent } from '../components/comments/comments.component';
 
 @NgModule({
-  declarations: [AddpostComponent, ViewpostComponent],
+  declarations: [AddpostComponent, ViewpostComponent, CommentsComponent],
   imports: [
     CommonModule,
     FormsModule,

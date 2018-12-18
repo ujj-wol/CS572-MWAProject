@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLogined() {
-    console.log(localStorage.getItem('token'))
+    // console.log(localStorage.getItem('token'))
     if(localStorage.getItem('token')) {
       return true;
     }
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    console.log("Token after logout: " + localStorage.getItem('token'));
+    // console.log("Token after logout: " + localStorage.getItem('token'));
     this.myRouter.navigate(['/login']); 
   }
 
