@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>{{postData?.title}}</h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>{{postData?.body}}</p>
+      <div><small>{{ today - postData?.created_date }} days ago</small></div>
+      <div><small>{{ postData?.comments.length }} Comments</small></div>
+    </div>
+    <hr>
+    <div class="col-sm-12">
+      <app-comments></app-comments>
+    </div>
+    
+    <div *ngFor="let comment of postData?.comments" class="col-sm-12">
+      <div class="col-sm-12"><strong>{{ comment?.username }}</strong> </div>
+      <div class="col-sm-12">{{comment?.comment_text}}</div>
+    </div>
+  </div>
+</div>

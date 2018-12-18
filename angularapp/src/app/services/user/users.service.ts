@@ -7,22 +7,13 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UsersService {
 
+   //private apipath: any="https://mwaserver.herokuapp.com"; 
+   private apipath: any="http://localhost:4000";
+  
   constructor(public http: HttpClient) {  }
   getUserData(): Observable<any>{
-    return this.http.get('http://localhost:4000/api/users');
+    return this.http.get(`${this.apipath}/api/users`);
  }
-
- validateLogin(username, password){
-  return this.http.post('http://localhost:4000/api/user/login',{
-      username : username,
-      password : password
-  }).subscribe(
-    resp => {
-      console.log(resp);
-      return "1";
-    }
-  )
-}
 
  getOnlineData() : any{
    
@@ -48,9 +39,9 @@ export class UsersService {
    else null; 
  }
 
- getUserById(uuid: string): any {
-   console.log("Id: "+ uuid);
-  return this.http.get(`http://localhost:4000/api/users/${uuid}`);
+ getUserByUsername(uuid: string): any {
+   console.log("Username: "+ uuid);
+  return this.http.get(`${this.apipath}/api/users/${uuid}`);
  }
 
  

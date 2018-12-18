@@ -1,8 +1,12 @@
-<p>
-  users works!
-</p>
-<p> users </p>
-<ul>
-  <li *ngFor="let user of data">{{user | json}}</li>
-</ul>
-<user-profile></user-profile>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <user-profile></user-profile>
+    </div>
+    <div class="col-sm-6">
+      <div><button class="btn btn-info" [routerLink]="['/post/add']">Add Post</button></div>
+      <hr>
+        <app-myposts></app-myposts>
+    </div>
+  </div>
+</div>

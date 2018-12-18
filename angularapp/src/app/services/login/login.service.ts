@@ -6,16 +6,26 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
  
+    //private apipath: any="https://mwaserver.herokuapp.com"; 
+   private apipath: any="http://localhost:4000";
+
     constructor(private http: HttpClient){
  
     }
      
     validateLogin(username, password){
         console.log(`usernaem ${username} password ${password}`)
-        return this.http.post('http://localhost:4000/api/users/login',{
+        return this.http.post(`${this.apipath}/api/users/login`,{
             username : username,
             password : password
         });
       }
  
+      add(username, password, email){
+        return this.http.post(`${this.apipath}/api/users/add`,{
+            username : username,
+            password : password,
+            email: email
+        });
+      }
 }

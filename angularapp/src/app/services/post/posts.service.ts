@@ -5,21 +5,36 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostsService {
-<<<<<<< HEAD
-  constructor(private http: HttpClient) { }
-  getAllPost(){
-    return this.http.get('http://localhost:4000/api/posts')
-}
-=======
 
+  //private apipath: any="https://mwaserver.herokuapp.com"; 
+  private apipath: any="http://localhost:4000";
+  
   constructor(private http: HttpClient) { }
+ 
+  getAllPost(){
+    return this.http.get(`${this.apipath}/api/posts`)
+  }
+
+  getPostsByUser(username: string){
+    return this.http.get(`${this.apipath}/api/posts/${username}`);
+  }
+
+  getPostsById(id: string){
+    return this.http.get(`${this.apipath}/api/posts/tag/${id}`);
+  }
 
   add(username, title, body){
-    return this.http.post('http://localhost:4000/api/posts/add',{
+    return this.http.post(`${this.apipath}/api/posts/add`,{
         username : username,
         title : title,
         body: body
     });
   }
->>>>>>> 05aefe16e41a514dfdec8f7bcfacea8dbde43b1f
+
+  addComment(username, text, postId) {
+    return this.http.patch(`${this.apipath}/api/posts/${postId}/addComment`, {
+      username: username,
+      comment_text: text
+    })
+  }
 }
