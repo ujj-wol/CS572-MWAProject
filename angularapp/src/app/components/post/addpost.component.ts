@@ -39,7 +39,7 @@ export class AddpostComponent implements OnInit {
       
       console.log('result  id is ', result.id);
       if(result) {
-        this.router.navigate([`/post/view/${result.id}`]);
+        this.router.navigate([`/home`]);
       } else {
         console.log("heeree");
       }

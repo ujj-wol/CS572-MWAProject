@@ -1,4 +1,7 @@
+
+<h3>Search posts</h3>
 <input type="text" (input)="0" #searchbar placeholder="Enter your search terms" />
+<hr>
 
 <div class="list-group">
   <div *ngFor="let post of userPosts | mypipe:searchbar.value">
