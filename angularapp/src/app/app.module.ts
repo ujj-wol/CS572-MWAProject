@@ -32,7 +32,7 @@ import { SignupComponent } from './components/login/signup.component';
     FormsModule,
     RouterModule.forRoot([
      { path: '', loadChildren: './modules/login.module#LoginModule' },
-     { path: 'users', loadChildren: './modules/users.module#UsersModule'},
+     { path: 'user', loadChildren: './modules/users.module#UsersModule'},
      { path: 'login', loadChildren: './modules/login.module#LoginModule'},
      { path: 'error', component: ErrorComponent },
      { path: 'home', component: HomeComponent },
