@@ -13,6 +13,14 @@ export class HeaderComponent implements OnInit {
     
   }
 
+  isLogined() {
+    console.log(localStorage.getItem('token'))
+    if(localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
+
   logout() {
     localStorage.removeItem('token');
     console.log("Token after logout: " + localStorage.getItem('token'));
