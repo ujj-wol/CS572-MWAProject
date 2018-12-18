@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+let ObjectId = require('mongodb').ObjectID;
 
 // for validation
 const {
@@ -33,6 +34,27 @@ router.get("/:username", (req, res) => {
             });
             res.status(200).json(results);
             console.log(username);
+        });
+
+});
+
+// to find posts using postId
+router.get("/tag/:postId", (req, res) => {
+
+    console.log('find post for a postId route entered!!');
+    let postId = req.params.postId;
+
+    console.log(postId);
+
+    req.app.locals.db.collection('posts')
+        .find({
+            "_id": ObjectId(postId)
+        }).toArray((err, results) => {
+            if (err) return res.status(404).json({
+                error: err
+            });
+            res.status(200).json(results);
+            console.log(results);
         });
 
 });
