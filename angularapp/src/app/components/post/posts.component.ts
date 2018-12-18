@@ -9,6 +9,7 @@ import { PostsService } from 'src/app/services/post/posts.service';
 })
 export class PostsComponent implements OnInit {
 
+  private today = new Date().getDate();
   public posts : any;
   constructor(private showPostService: PostsService) { }
 

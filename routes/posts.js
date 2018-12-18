@@ -78,7 +78,7 @@ router.post("/add", [
         email: req.body.email,
         title: req.body.title,
         body: req.body.body,
-        created_date: "",
+        created_date: new Date().getDate(),
         updated_date: "",
         status: "Inactive",
         comments: []
