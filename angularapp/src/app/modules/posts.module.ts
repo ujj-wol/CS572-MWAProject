@@ -14,7 +14,7 @@ import { ViewpostComponent } from '../components/post/viewpost.component';
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'add', component: AddpostComponent },
-      { path: 'view', component: ViewpostComponent }
+      { path: 'view/:id', component: ViewpostComponent }
     ])
   ]
 })

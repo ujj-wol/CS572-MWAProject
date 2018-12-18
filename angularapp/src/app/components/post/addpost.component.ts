@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { store } from 'src/app/store/store';
 import { addPostAction } from 'src/app/store/actions';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { IPost } from 'src/app/store/ipost';
 
 @Component({
   selector: 'app-addpost',
@@ -15,10 +16,9 @@ export class AddpostComponent implements OnInit {
   myForm: FormGroup;
   
   username = "amjad";
-  @Input() title;
-  @Input() body;
   posts;
   unsubscribe;
+  postData:IPost;
   
   constructor(private formBuilder: FormBuilder, private postService: PostsService, private router: Router) {
     this.myForm = formBuilder.group({
@@ -32,13 +32,14 @@ export class AddpostComponent implements OnInit {
    }
 
   
-  add() {
-    console.log(`${this.username} and title ${this.title}`)
-  if(this.username && this.title && this.body) {
-    this.postService.add(this.username, this.title, this.body).subscribe(result => {
-      console.log('result is ', result);
+  add(postData) {
+    console.log(`${postData.title} and title ${postData.body}`)
+  if(this.username && postData.title && postData.body) {
+    this.postService.add(this.username, postData.title, postData.body).subscribe((result:{status: string, id: string}) => {
+      
+      console.log('result  id is ', result.id);
       if(result) {
-        this.router.navigate(['/post/view']);
+        this.router.navigate([`/post/view/${result.id}`]);
       } else {
         console.log("heeree");
       }
@@ -62,7 +63,9 @@ export class AddpostComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.myForm.value)
-    store.dispatch(addPostAction(this.myForm.value));
+    let postData = this.myForm.value;
+    console.log(postData);
+    store.dispatch(addPostAction(postData));
+    this.add(postData);
   }
 }
