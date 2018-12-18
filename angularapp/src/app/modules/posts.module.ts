@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { ViewpostComponent } from '../components/post/viewpost.component';
 import { CommentsComponent } from '../components/comments/comments.component';
+import { MyguardGuard } from '../guards/myguard.guard';
 
 @NgModule({
   declarations: [AddpostComponent, ViewpostComponent, CommentsComponent],
@@ -14,8 +15,8 @@ import { CommentsComponent } from '../components/comments/comments.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: 'add', component: AddpostComponent },
-      { path: 'view', component: ViewpostComponent }
+      { path: 'add', component: AddpostComponent, canActivate: [MyguardGuard] },
+      { path: 'view', component: ViewpostComponent, canActivate: [MyguardGuard] }
     ])
   ]
 })

@@ -15,7 +15,7 @@ export class AddpostComponent implements OnInit {
 
   myForm: FormGroup;
 
-  username = "amjad";
+  username = localStorage.getItem('loggedInUser');
   posts;
   unsubscribe;
   postData: IPost;

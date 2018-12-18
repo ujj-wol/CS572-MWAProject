@@ -7,9 +7,12 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UsersService {
 
+   //private apipath: any="https://mwaserver.herokuapp.com"; 
+   private apipath: any="http://localhost:4000";
+  
   constructor(public http: HttpClient) {  }
   getUserData(): Observable<any>{
-    return this.http.get('http://localhost:4000/api/users');
+    return this.http.get(`${this.apipath}/api/users`);
  }
 
  getOnlineData() : any{
@@ -38,7 +41,7 @@ export class UsersService {
 
  getUserByUsername(uuid: string): any {
    console.log("Username: "+ uuid);
-  return this.http.get(`http://localhost:4000/api/users/${uuid}`);
+  return this.http.get(`${this.apipath}/api/users/${uuid}`);
  }
 
  
