@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -36,5 +36,11 @@ export class PostsService {
       username: username,
       comment_text: text
     })
+  }
+
+  emitter = new EventEmitter();
+  emitValue(value) {
+    console.log("Emitter in posts service is called");
+    this.emitter.emit(value);
   }
 }

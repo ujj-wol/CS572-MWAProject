@@ -15,7 +15,7 @@ export class ViewpostComponent implements OnInit {
   private postData;
   // private title;
   // private body;
-
+  private comments: any[];
 
   constructor(private myRoute: ActivatedRoute, private myPostsService: PostsService) {
     myRoute.queryParams.subscribe(params => { this.postId = params.postId });
@@ -27,7 +27,16 @@ export class ViewpostComponent implements OnInit {
         this.postData = data[0];
         // this.title = this.postData.title;
         // this.body = this.postData.body;
+        this.comments = data[0].comments;
       });
+
+    this.myPostsService.emitter.subscribe(data => {
+      this.comments.push({
+        username: localStorage.getItem("loggedInUser"),
+        comment_text: data
+      });
+      console.log("testing on viewpost:" + this.comments);
+    });
   }
 
 }

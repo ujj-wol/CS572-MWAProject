@@ -25,12 +25,16 @@ export class CommentsComponent implements OnInit {
   onSubmit() {
     console.log(localStorage.getItem('loggedInUser') + this.commentForm.value.comment);
 
-    this.myPostsService.addComment(localStorage.getItem('loggedInUser'), 
-                                  this.commentForm.value.comment, this.postId)
-                                  .subscribe(
-                                    resp => {console.log(resp)},
-                                    err => {console.log(err)}
-                                  )
-                                  this.router.navigate([`/home`]);
+    this.myPostsService.addComment(localStorage.getItem('loggedInUser'),
+      this.commentForm.value.comment, this.postId)
+      .subscribe(
+        resp => {
+          console.log(resp);
+          this.myPostsService.emitValue(this.commentForm.value.comment);  //instead better to receive this comment from response and emit this value
+          this.commentForm.reset();
+        },
+        err => { console.log(err) }
+      )
+    //this.router.navigate([`/home`]);
   }
 }

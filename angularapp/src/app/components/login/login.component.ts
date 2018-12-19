@@ -22,6 +22,7 @@ validateLogin() {
         if(result.token) {
           localStorage.setItem('token', result.token);
           localStorage.setItem('loggedInUser', result.username);
+          this.loginService.emitValue(result.username);
         }
       
         this.router.navigate(['/home']);
