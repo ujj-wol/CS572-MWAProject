@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UsersService {
 
-   //private apipath: any="https://mwaserver.herokuapp.com"; 
-   private apipath: any="http://localhost:4000";
+   private apipath: any="https://mwaserver.herokuapp.com"; 
+   //private apipath: any="http://localhost:4000";
   
   constructor(public http: HttpClient) {  }
   getUserData(): Observable<any>{
