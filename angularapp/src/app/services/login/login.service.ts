@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import { User } from '../models/user.model';
 @Injectable({
@@ -27,5 +27,10 @@ export class LoginService {
             password : password,
             email: email
         });
+      }
+
+      emitter = new EventEmitter();
+      emitValue(value) {
+          this.emitter.emit(value);
       }
 }
