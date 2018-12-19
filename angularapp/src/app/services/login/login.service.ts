@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import { User } from '../models/user.model';
 @Injectable({
@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
  
-    //private apipath: any="https://mwaserver.herokuapp.com"; 
-   private apipath: any="http://localhost:4000";
+    private apipath: any="https://mwaserver.herokuapp.com"; 
+   //private apipath: any="http://localhost:4000";
 
     constructor(private http: HttpClient){
  
@@ -27,5 +27,10 @@ export class LoginService {
             password : password,
             email: email
         });
+      }
+
+      emitter = new EventEmitter();
+      emitValue(value) {
+          this.emitter.emit(value);
       }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PostsService {
 
-  //private apipath: any="https://mwaserver.herokuapp.com"; 
-  private apipath: any="http://localhost:4000";
-  
+  private apipath: any="https://mwaserver.herokuapp.com"; 
+  //private apipath: any="http://localhost:4000";
+
   constructor(private http: HttpClient) { }
  
   getAllPost(){
@@ -36,5 +36,11 @@ export class PostsService {
       username: username,
       comment_text: text
     })
+  }
+
+  emitter = new EventEmitter();
+  emitValue(value) {
+    console.log("Emitter in posts service is called");
+    this.emitter.emit(value);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   private loggedInUserName:string;
-  constructor(private myRouter: Router) { 
+  constructor(private myRouter: Router, private myLoginService: LoginService) { 
+    //to use username data on refresh
     if(localStorage.getItem('loggedInUser') !== "") {
       this.loggedInUserName = localStorage.getItem('loggedInUser');
     }
@@ -31,6 +33,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.myLoginService.emitter.subscribe(data => this.loggedInUserName = data);
     if(localStorage.getItem('token') !== null) {
       
     }
